@@ -1,0 +1,683 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{BA6326B2-35CF-4C16-979A-D8E88B44BABD}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>Mobile_Town_V3</RootNamespace>
+    <AssemblyName>Mobile_Town_V3</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>logo_.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="itextsharp, Version=5.5.13.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\iTextSharp.5.5.13\lib\itextsharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.Word, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Artikal.cs" />
+    <Compile Include="Artikli.cs">
+      <DependentUpon>MTAzureBase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Artikli_knjizeno.cs">
+      <DependentUpon>MTAzureBase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dnevni_pazar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dnevni_pazar.Designer.cs">
+      <DependentUpon>Dnevni_pazar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dodaj_korisnika.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dodaj_korisnika.Designer.cs">
+      <DependentUpon>Dodaj_korisnika.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dug.cs" />
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Izmena.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Izmena.Designer.cs">
+      <DependentUpon>Izmena.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Izmena_artikla.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Izmena_artikla.Designer.cs">
+      <DependentUpon>Izmena_artikla.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Izmena_duga.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Izmena_duga.Designer.cs">
+      <DependentUpon>Izmena_duga.cs</DependentUpon>
+    </Compile>
+    <Compile Include="izmena_mob_hover.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="izmena_mob_hover.Designer.cs">
+      <DependentUpon>izmena_mob_hover.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Izmeni_servis.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Izmeni_servis.Designer.cs">
+      <DependentUpon>Izmeni_servis.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Korisnici.cs">
+      <DependentUpon>MTAzureBase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Korisnici_.cs" />
+    <Compile Include="Lista_duznika.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Lista_duznika.Designer.cs">
+      <DependentUpon>Lista_duznika.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Lista_hover_mob.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Lista_hover_mob.Designer.cs">
+      <DependentUpon>Lista_hover_mob.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Lista_narudzbina.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Lista_narudzbina.Designer.cs">
+      <DependentUpon>Lista_narudzbina.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Lista_racuni.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Lista_racuni.Designer.cs">
+      <DependentUpon>Lista_racuni.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Lista_racuni_mob_hover.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Lista_racuni_mob_hover.Designer.cs">
+      <DependentUpon>Lista_racuni_mob_hover.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Lista_radnika.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Lista_radnika.Designer.cs">
+      <DependentUpon>Lista_radnika.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Lista_rezervacija.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Lista_rezervacija.Designer.cs">
+      <DependentUpon>Lista_rezervacija.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Lista_servisa.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Lista_servisa.Designer.cs">
+      <DependentUpon>Lista_servisa.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mobile_TownDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Mobile_TownDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Mobile_TownDataSet1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Mobile_TownDataSet1.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Mobile_TownDataSet2.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Mobile_TownDataSet2.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Mobile_TownDataSet3.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Mobile_TownDataSet3.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Mobile_TownDataSet4.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Mobile_TownDataSet4.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Mobile_TownDataSet5.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Mobile_TownDataSet5.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="mob_hover_pocetna.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="mob_hover_pocetna.Designer.cs">
+      <DependentUpon>mob_hover_pocetna.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MTAzureBase.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MTAzureBase.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MTAzureBase.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MTAzureBase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MTAzureBase.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MTAzureBase.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Naplati_narudzbinu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Naplati_narudzbinu.Designer.cs">
+      <DependentUpon>Naplati_narudzbinu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Naplati_rezervaciju.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Naplati_rezervaciju.Designer.cs">
+      <DependentUpon>Naplati_rezervaciju.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Naplati_servis.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Naplati_servis.Designer.cs">
+      <DependentUpon>Naplati_servis.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Narudzbina.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Narudzbina.Designer.cs">
+      <DependentUpon>Narudzbina.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Narudzbine_.cs" />
+    <Compile Include="Naslovna.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Naslovna.Designer.cs">
+      <DependentUpon>Naslovna.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Prikazi_artikle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Prikazi_artikle.Designer.cs">
+      <DependentUpon>Prikazi_artikle.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Racun.cs" />
+    <Compile Include="Racuni_hover_mob.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Racuni_hover_mob.Designer.cs">
+      <DependentUpon>Racuni_hover_mob.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Racuni_knjizeno.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Racuni_knjizeno.Designer.cs">
+      <DependentUpon>Racuni_knjizeno.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Racun_k_n.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Racun_k_n.Designer.cs">
+      <DependentUpon>Racun_k_n.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Rezervacija.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Rezervacija.Designer.cs">
+      <DependentUpon>Rezervacija.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Rezervacija_.cs" />
+    <Compile Include="Servis.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Servis.Designer.cs">
+      <DependentUpon>Servis.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Servis_.cs" />
+    <Compile Include="Stampaj_racun.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Stampaj_racun.Designer.cs">
+      <DependentUpon>Stampaj_racun.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Unesi_narudzbinu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Unesi_narudzbinu.Designer.cs">
+      <DependentUpon>Unesi_narudzbinu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Unesi_servis.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Unesi_servis.Designer.cs">
+      <DependentUpon>Unesi_servis.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Unos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Unos.Designer.cs">
+      <DependentUpon>Unos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Unos_artikla_u_racun.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Unos_artikla_u_racun.Designer.cs">
+      <DependentUpon>Unos_artikla_u_racun.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Unos_duga.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Unos_duga.Designer.cs">
+      <DependentUpon>Unos_duga.cs</DependentUpon>
+    </Compile>
+    <Compile Include="unos_mob_hover.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="unos_mob_hover.Designer.cs">
+      <DependentUpon>unos_mob_hover.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vidi_racun.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vidi_racun.Designer.cs">
+      <DependentUpon>Vidi_racun.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Dnevni_pazar.resx">
+      <DependentUpon>Dnevni_pazar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dodaj_korisnika.resx">
+      <DependentUpon>Dodaj_korisnika.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Izmena.resx">
+      <DependentUpon>Izmena.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Izmena_artikla.resx">
+      <DependentUpon>Izmena_artikla.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Izmena_duga.resx">
+      <DependentUpon>Izmena_duga.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="izmena_mob_hover.resx">
+      <DependentUpon>izmena_mob_hover.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Izmeni_servis.resx">
+      <DependentUpon>Izmeni_servis.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Lista_duznika.resx">
+      <DependentUpon>Lista_duznika.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Lista_hover_mob.resx">
+      <DependentUpon>Lista_hover_mob.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Lista_narudzbina.resx">
+      <DependentUpon>Lista_narudzbina.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Lista_racuni.resx">
+      <DependentUpon>Lista_racuni.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Lista_racuni_mob_hover.resx">
+      <DependentUpon>Lista_racuni_mob_hover.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Lista_radnika.resx">
+      <DependentUpon>Lista_radnika.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Lista_rezervacija.resx">
+      <DependentUpon>Lista_rezervacija.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Lista_servisa.resx">
+      <DependentUpon>Lista_servisa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="mob_hover_pocetna.resx">
+      <DependentUpon>mob_hover_pocetna.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Naplati_narudzbinu.resx">
+      <DependentUpon>Naplati_narudzbinu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Naplati_rezervaciju.resx">
+      <DependentUpon>Naplati_rezervaciju.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Naplati_servis.resx">
+      <DependentUpon>Naplati_servis.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Narudzbina.resx">
+      <DependentUpon>Narudzbina.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Naslovna.resx">
+      <DependentUpon>Naslovna.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Prikazi_artikle.resx">
+      <DependentUpon>Prikazi_artikle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="Racuni_hover_mob.resx">
+      <DependentUpon>Racuni_hover_mob.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Racuni_knjizeno.resx">
+      <DependentUpon>Racuni_knjizeno.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Racun_k_n.resx">
+      <DependentUpon>Racun_k_n.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Rezervacija.resx">
+      <DependentUpon>Rezervacija.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Servis.resx">
+      <DependentUpon>Servis.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Stampaj_racun.resx">
+      <DependentUpon>Stampaj_racun.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Unesi_narudzbinu.resx">
+      <DependentUpon>Unesi_narudzbinu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Unesi_servis.resx">
+      <DependentUpon>Unesi_servis.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Unos.resx">
+      <DependentUpon>Unos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Unos_artikla_u_racun.resx">
+      <DependentUpon>Unos_artikla_u_racun.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Unos_duga.resx">
+      <DependentUpon>Unos_duga.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="unos_mob_hover.resx">
+      <DependentUpon>unos_mob_hover.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vidi_racun.resx">
+      <DependentUpon>Vidi_racun.cs</DependentUpon>
+    </EmbeddedResource>
+    <EntityDeploy Include="MTAzureBase.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>MTAzureBase.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Mobile_TownDataSet.xsc">
+      <DependentUpon>Mobile_TownDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="Mobile_TownDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Mobile_TownDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Mobile_TownDataSet.xss">
+      <DependentUpon>Mobile_TownDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="Mobile_TownDataSet1.xsc">
+      <DependentUpon>Mobile_TownDataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="Mobile_TownDataSet1.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Mobile_TownDataSet1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Mobile_TownDataSet1.xss">
+      <DependentUpon>Mobile_TownDataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="Mobile_TownDataSet2.xsc">
+      <DependentUpon>Mobile_TownDataSet2.xsd</DependentUpon>
+    </None>
+    <None Include="Mobile_TownDataSet2.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Mobile_TownDataSet2.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Mobile_TownDataSet2.xss">
+      <DependentUpon>Mobile_TownDataSet2.xsd</DependentUpon>
+    </None>
+    <None Include="Mobile_TownDataSet3.xsc">
+      <DependentUpon>Mobile_TownDataSet3.xsd</DependentUpon>
+    </None>
+    <None Include="Mobile_TownDataSet3.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Mobile_TownDataSet3.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Mobile_TownDataSet3.xss">
+      <DependentUpon>Mobile_TownDataSet3.xsd</DependentUpon>
+    </None>
+    <None Include="Mobile_TownDataSet4.xsc">
+      <DependentUpon>Mobile_TownDataSet4.xsd</DependentUpon>
+    </None>
+    <None Include="Mobile_TownDataSet4.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Mobile_TownDataSet4.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Mobile_TownDataSet4.xss">
+      <DependentUpon>Mobile_TownDataSet4.xsd</DependentUpon>
+    </None>
+    <None Include="Mobile_TownDataSet5.xsc">
+      <DependentUpon>Mobile_TownDataSet5.xsd</DependentUpon>
+    </None>
+    <None Include="Mobile_TownDataSet5.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Mobile_TownDataSet5.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Mobile_TownDataSet5.xss">
+      <DependentUpon>Mobile_TownDataSet5.xsd</DependentUpon>
+    </None>
+    <None Include="MTAzureBase.edmx.diagram">
+      <DependentUpon>MTAzureBase.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\DataSources\Artikal.datasource" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mb_lg.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\User-blue-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\secrecy-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Login-in-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Login-in-icon %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\if_login_173049.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\if_Cross_2001870 %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\if_Cancel_1493282.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\if_vector_66_05_473649.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\if_vector_66_14_473629 %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\if_vector_66_12_473633.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\if_batteryfull_1055116.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\if_Citycons_power_1342951.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\if_Retract_2001886.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\if_Retract_2001886 %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\if_Retract_20018861.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\if_phone_3131961.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\if_phone_3131961 %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\if_phone_3131961 %282%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\if_Mobile_728957.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\if_Mobile_728957 %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\if_gamecontroller_1055053.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\if__79ui_2303184.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\if_17_calender_schedule_time_management_control_day_2109114.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\if_07_icons_2191548.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\if_print_job_seeker_employee_unemployee_work_2620507 %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\if_icon-136-document-edit_314724 %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\if_revisi_04_2191538.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="logo_.ico" />
+    <Content Include="MTAzureBase.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>MTAzureBase.edmx</DependentUpon>
+      <LastGenOutput>MTAzureBase.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="MTAzureBase.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>MTAzureBase.edmx</DependentUpon>
+      <LastGenOutput>MTAzureBase.cs</LastGenOutput>
+    </Content>
+    <None Include="Resources\if_4_300976.png" />
+    <None Include="Resources\if_35_E-Commerce_Solution_1688844.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="Microsoft.Office.Core">
+      <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>8</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="Microsoft.Office.Interop.Word1">
+      <Guid>{00020905-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>8</VersionMajor>
+      <VersionMinor>7</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="VBIDE">
+      <Guid>{0002E157-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>5</VersionMajor>
+      <VersionMinor>3</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

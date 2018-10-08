@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Mobile_TownModelStoreContainer" CdmEntityContainer="Mobile_TownEntities3">
+    <EntitySetMapping Name="Artiklis">
+      <EntityTypeMapping TypeName="Mobile_TownModel.Artikli">
+        <MappingFragment StoreEntitySet="Artikli">
+          <ScalarProperty Name="sifra" ColumnName="sifra" />
+          <ScalarProperty Name="grupa" ColumnName="grupa" />
+          <ScalarProperty Name="artikal" ColumnName="artikal" />
+          <ScalarProperty Name="kolicina" ColumnName="kolicina" />
+          <ScalarProperty Name="nabavna_cena" ColumnName="nabavna_cena" />
+          <ScalarProperty Name="prodajna_cena" ColumnName="prodajna_cena" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Artikli_knjizeno">
+      <EntityTypeMapping TypeName="Mobile_TownModel.Artikli_knjizeno">
+        <MappingFragment StoreEntitySet="Artikli_knjizeno">
+          <ScalarProperty Name="sifra" ColumnName="sifra" />
+          <ScalarProperty Name="grupa" ColumnName="grupa" />
+          <ScalarProperty Name="artikal" ColumnName="artikal" />
+          <ScalarProperty Name="kolicina" ColumnName="kolicina" />
+          <ScalarProperty Name="nabavna_cena" ColumnName="nabavna_cena" />
+          <ScalarProperty Name="prodajna_cena" ColumnName="prodajna_cena" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Korisnicis">
+      <EntityTypeMapping TypeName="Mobile_TownModel.Korisnici">
+        <MappingFragment StoreEntitySet="Korisnici">
+          <ScalarProperty Name="id_korisnika" ColumnName="id_korisnika" />
+          <ScalarProperty Name="ime" ColumnName="ime" />
+          <ScalarProperty Name="prezime" ColumnName="prezime" />
+          <ScalarProperty Name="korisnicko_ime" ColumnName="korisnicko_ime" />
+          <ScalarProperty Name="sifra" ColumnName="sifra" />
+          <ScalarProperty Name="nivo" ColumnName="nivo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
