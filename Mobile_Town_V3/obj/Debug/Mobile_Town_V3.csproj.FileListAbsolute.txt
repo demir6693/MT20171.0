@@ -50,3 +50,4 @@ C:\Users\demir\source\repos\Mobile_Town_V3\Mobile_Town_V3\obj\Debug\Mobile_Town_
 C:\Users\demir\source\repos\Mobile_Town_V3\Mobile_Town_V3\obj\Debug\Mobile_Town_V3.csproj.CopyComplete
 C:\Users\demir\source\repos\Mobile_Town_V3\Mobile_Town_V3\obj\Debug\Mobile_Town_V3.exe
 C:\Users\demir\source\repos\Mobile_Town_V3\Mobile_Town_V3\obj\Debug\Mobile_Town_V3.pdb
+C:\Users\demir\source\repos\Mobile_Town_V3\Mobile_Town_V3\obj\Debug\Mobile_Town_V3.csprojAssemblyReference.cache

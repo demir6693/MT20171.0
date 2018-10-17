@@ -17,7 +17,6 @@ namespace Mobile_Town_V3
         public string sifra_korisnika { get; set; }
         public int nivo { get; set; }
 
-
         public bool Unesi_korisnika()
         {
             bool unos;

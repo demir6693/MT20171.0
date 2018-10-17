@@ -42,8 +42,10 @@ namespace Mobile_Town_V3
             InitializeComponent();
         }
 
+      
         private void Stampaj_racun_Load(object sender, EventArgs e)
-        {
+        {   
+            
             textBox4.Enabled = false;
             textBox2.Enabled = false;
             label9.Text = prodavac;
@@ -65,6 +67,7 @@ namespace Mobile_Town_V3
 
         private void button1_Click(object sender, EventArgs e)
         {
+            Artikal a = new Artikal();
             decimal uplaceno = decimal.Parse(textBox1.Text);
             decimal racun = decimal.Parse(label5.Text);
 
@@ -120,6 +123,18 @@ namespace Mobile_Town_V3
                     r.iznos_nabavna = suma_zarada_knjizeno;
                     r.unesi_racun_knjizeno();
                     button1.Enabled = false;
+
+                    for(int i = 0; i < knjizeno.Count; i++)
+                    {
+                        if(knjizeno[i] == 1)
+                        {
+                            a.update_artikli_knjizeno(sifre[i], kolicina[i]);
+                        }
+                        else if(knjizeno[i] == 0)
+                        {
+                            a.update_artikli(sifre[i], kolicina[i]);
+                        }
+                    }
                 }
                 else
                 {

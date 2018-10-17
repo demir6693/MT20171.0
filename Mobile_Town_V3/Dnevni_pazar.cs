@@ -17,11 +17,24 @@ namespace Mobile_Town_V3
     {
         string izvestaj;
         string user;
+        
         public Dnevni_pazar(string izvestaj, string user)
         {
             this.izvestaj = izvestaj;
             this.user = user;
             InitializeComponent();
+            Korisnici_ k = new Korisnici_();
+            List<string> korisnici = k.daj_korisnike();
+            korisnici.Add("Svi");
+
+            comboBox1.DataSource = korisnici;
+            comboBox1.Text = "Svi";
+
+            if(!user.Equals("mobiletown"))
+            {
+                button4.Visible = false;
+                comboBox1.Visible = false;
+            }
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
@@ -35,22 +48,21 @@ namespace Mobile_Town_V3
         }
 
         private void Dnevni_pazar_Load(object sender, EventArgs e)
-        {   
-           
-
+        {
+    
             List<Racun> ls = new List<Racun>();
             Racun r = new Racun();
             if (izvestaj.Equals("DNEVNI"))
             {                       
-                ls = r.daj_racun_prodavac_dnevni();
+                ls = r.daj_racun_prodavac_dnevni(comboBox1.SelectedItem.ToString());
             }
             else if(izvestaj.Equals("MESECNI"))
             {
-                ls = r.daj_racun_prodavac_mesecni();
+                ls = r.daj_racun_prodavac_mesecni(comboBox1.SelectedItem.ToString());
             }
             else if(izvestaj.Equals("GODISNJI"))
             {
-                ls = r.daj_racun_prodavac_godisnji();
+                ls = r.daj_racun_prodavac_godisnji(comboBox1.SelectedItem.ToString());
             }
 
             this.dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
@@ -66,6 +78,7 @@ namespace Mobile_Town_V3
                 label3.Visible = false;
                 dataGridView1.Columns[5].Visible = false;
             }
+           
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -204,6 +217,11 @@ namespace Mobile_Town_V3
                 doc.Close();
             }
 
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            Dnevni_pazar_Load(sender, e);
         }
     }
 }

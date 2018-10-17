@@ -177,6 +177,7 @@ namespace Mobile_Town_V3
             List<int> kolicina = new List<int>();
             List<decimal> cena = new List<decimal>();
             List<int> knjizeno = new List<int>();
+            List <List<int>> sifra_knjizeno = new List<List<int>>();
             decimal suma_nabavna = 0;
             decimal suma_zarada_knjizeno = 0;
             Artikal a = new Artikal();
@@ -198,11 +199,11 @@ namespace Mobile_Town_V3
                 if(int.Parse(datarow.Cells[4].Value.ToString()) == 1)
                 {
                     suma_zarada_knjizeno += decimal.Parse(datarow.Cells[5].Value.ToString()) * int.Parse(datarow.Cells[2].Value.ToString());
-                    a.update_artikli_knjizeno(int.Parse(datarow.Cells[0].Value.ToString()), int.Parse(datarow.Cells[2].Value.ToString()));
+                    //a.update_artikli_knjizeno(int.Parse(datarow.Cells[0].Value.ToString()), int.Parse(datarow.Cells[2].Value.ToString()));
                 }
                 else if(int.Parse(datarow.Cells[4].Value.ToString()) == 0)
                 {
-                    a.update_artikli(int.Parse(datarow.Cells[0].Value.ToString()), int.Parse(datarow.Cells[2].Value.ToString()));
+                    //a.update_artikli(int.Parse(datarow.Cells[0].Value.ToString()), int.Parse(datarow.Cells[2].Value.ToString()));
                 }
  
             }

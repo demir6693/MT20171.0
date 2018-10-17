@@ -1,8 +1,11 @@
-﻿using System;
+﻿using iTextSharp.text;
+using iTextSharp.text.pdf;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -78,6 +81,88 @@ namespace Mobile_Town_V3
             }
 
             Lista_narudzbina_Load(sender, e);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Stampaj_Listu();
+        }
+
+        private void Stampaj_Listu()
+        {
+            iTextSharp.text.Document doc = new iTextSharp.text.Document(PageSize.A4.Rotate());
+            string date_time = (DateTime.Now.Day + DateTime.Now.Month + DateTime.Now.Year + DateTime.Now.Hour + DateTime.Now.Minute + DateTime.Now.Second).ToString();
+            try
+            {
+                string dir_mb = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\MobileTown_narudzbine";
+
+                if (Directory.Exists(dir_mb))
+                {
+                    PdfWriter.GetInstance(doc, new FileStream(dir_mb + "\\narudzbina" + date_time + ".pdf", FileMode.Create));
+                    doc.Open();
+                }
+                else
+                {
+                    Directory.CreateDirectory(dir_mb);
+                    PdfWriter.GetInstance(doc, new FileStream(dir_mb + "\\narudzbina" + date_time + ".pdf", FileMode.Create));
+                    doc.Open();
+                }
+
+                iTextSharp.text.Paragraph title = new iTextSharp.text.Paragraph("Mobile Town");
+                title.Alignment = Element.ALIGN_CENTER;
+                title.Font.Size = 32;
+                doc.Add(title);
+
+                iTextSharp.text.Paragraph podaci;
+                podaci = new iTextSharp.text.Paragraph("\n");
+                podaci.Add("           Narudzbine");
+                podaci.Add("\n");
+                podaci.Add("           Datum:" + DateTime.Now.ToString("       dd-MM-yyyy HH-mm"));
+                podaci.Add("\n");
+     
+                podaci.Font.Size = 14;
+                doc.Add(podaci);
+
+                iTextSharp.text.Paragraph razmak = new iTextSharp.text.Paragraph("\n");
+                doc.Add(razmak);
+
+                PdfPTable table = new PdfPTable(4);
+                table.AddCell("Id narudzbine");
+                table.AddCell("Ime i prezime");
+                table.AddCell("Broj telefona");
+                table.AddCell("Opis");
+
+                //for (int i = 0; i < sifre.Count; i++)
+                //{
+                //    table.AddCell(sifre[i].ToString() + " " + artikli[i].ToString());
+                //    table.AddCell(kolicina[i].ToString());
+                //    table.AddCell(cena[i].ToString());
+                //    double pdv = 0.2;
+                //    double cn = double.Parse(cena[i].ToString());
+                //    double cena_tmp = cn * pdv;
+                //    table.AddCell(cena_tmp.ToString());
+                //}
+
+                foreach(DataGridViewRow datarow in dataGridView1.Rows)
+                {
+                    table.AddCell(datarow.Cells[0].Value.ToString());
+                    table.AddCell(datarow.Cells[1].Value.ToString());
+                    table.AddCell(datarow.Cells[2].Value.ToString());
+                    table.AddCell(datarow.Cells[3].Value.ToString());
+                }
+
+                doc.Add(table);
+
+                System.Diagnostics.Process.Start(dir_mb + "\\narudzbina" + date_time + ".pdf");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                doc.Close();
+            }
         }
     }
 }

@@ -167,7 +167,7 @@ namespace Mobile_Town_V3
             return ls_a;
         }
 
-        public List<Racun> daj_racun_prodavac_dnevni()
+        public List<Racun> daj_racun_prodavac_dnevni(string prodavac)
         {
             List<Racun> ls_a = new List<Racun>();
 
@@ -177,7 +177,16 @@ namespace Mobile_Town_V3
                 {
                     conn.Open();
 
-                    SqlCommand cmd = new SqlCommand("SELECT * FROM Racuni", conn);
+                    SqlCommand cmd;
+                    if (prodavac.Equals("Svi"))
+                    {
+                        cmd = new SqlCommand("SELECT * FROM Racuni", conn);
+                    }
+                    else
+                    {
+                        cmd = new SqlCommand("SELECT * FROM Racuni WHERE prodavac = @prodavac", conn);
+                        cmd.Parameters.AddWithValue("@prodavac", prodavac);
+                    }
 
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
@@ -222,7 +231,7 @@ namespace Mobile_Town_V3
             return ls_a;
         }
 
-        public List<Racun> daj_racun_prodavac_mesecni()
+        public List<Racun> daj_racun_prodavac_mesecni(string prodavac)
         {
             List<Racun> ls_a = new List<Racun>();
 
@@ -231,9 +240,18 @@ namespace Mobile_Town_V3
                 try
                 {
                     conn.Open();
+                    SqlCommand cmd;
 
-                    SqlCommand cmd = new SqlCommand("SELECT * FROM Racuni", conn);
-
+                    if (prodavac.Equals("Svi"))
+                    {
+                        cmd = new SqlCommand("SELECT * FROM Racuni", conn);
+                    }
+                    else
+                    {
+                        cmd = new SqlCommand("SELECT * FROM Racuni WHERE prodavac = @prodavac", conn);
+                        cmd.Parameters.AddWithValue("@prodavac", prodavac);
+                    }
+                   
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
                         while (reader.Read())
@@ -278,7 +296,7 @@ namespace Mobile_Town_V3
             return ls_a;
         }
 
-        public List<Racun> daj_racun_prodavac_godisnji()
+        public List<Racun> daj_racun_prodavac_godisnji(string prodavac)
         {
             List<Racun> ls_a = new List<Racun>();
 
@@ -288,7 +306,16 @@ namespace Mobile_Town_V3
                 {
                     conn.Open();
 
-                    SqlCommand cmd = new SqlCommand("SELECT * FROM Racuni", conn);
+                    SqlCommand cmd;
+                    if (prodavac.Equals("Svi"))
+                    {
+                        cmd = new SqlCommand("SELECT * FROM Racuni", conn);
+                    }
+                    else
+                    {
+                        cmd = new SqlCommand("SELECT * FROM Racuni WHERE prodavac = @prodavac", conn);
+                        cmd.Parameters.AddWithValue("@prodavac", prodavac);
+                    }
 
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
@@ -341,7 +368,7 @@ namespace Mobile_Town_V3
                     conn.Open();
 
                     SqlCommand cmd = new SqlCommand("SELECT * FROM Racuni_knjizeno", conn);
-
+                   
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
                         while (reader.Read())
