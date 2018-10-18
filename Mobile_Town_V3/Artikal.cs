@@ -21,6 +21,60 @@ namespace Mobile_Town_V3
 
         public static List<Artikal> get_list = new List<Artikal>();
 
+
+        public List<Artikal> Pretraga(string search, string grupa_tmp, string query)
+        {
+            List<Artikal> ls_artikal = new List<Artikal>();
+
+            using (SqlConnection conn = new SqlConnection(connString))
+            {
+                try
+                {
+                    conn.Open();
+                   
+                    SqlCommand cmd = new SqlCommand("SELECT * FROM " + query + " WHERE Grupa=@Grupa AND Artikal LIKE @search", conn);
+                    cmd.Parameters.AddWithValue("@Grupa", grupa_tmp);
+                    cmd.Parameters.AddWithValue("@search", search + "%");
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            Artikal a = new Artikal();
+                            a.sifra = int.Parse(reader["Sifra"].ToString());
+                            a.grupa = reader["Grupa"].ToString();
+                            a.artikal = reader["Artikal"].ToString();
+                            a.kolicina = int.Parse(reader["Kolicina"].ToString());
+                            a.nabavna_cena = decimal.Parse(reader["Nabavna_cena"].ToString());
+                            a.prodajna_cena = decimal.Parse(reader["Prodajna_cena"].ToString());
+
+                            if (query.Equals("Artikli"))
+                            {
+                                a.knjizeno = 0;
+                            }
+                            else if (query.Equals("Artikli_knjizeno"))
+                            {
+                                a.knjizeno = 1;
+                            }
+                            
+                            ls_artikal.Add(a);
+                        }
+                    }
+
+                }
+                catch (SqlException ex)
+                {
+                    Console.WriteLine(ex.Message);
+
+                }
+                finally
+                {
+                    conn.Close();
+                }
+            }
+
+            return ls_artikal;
+        }
         public bool Unesi_artikal(string query)
         {
             bool unos;

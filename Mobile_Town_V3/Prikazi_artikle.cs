@@ -15,6 +15,7 @@ namespace Mobile_Town_V3
     {
         public string grupa;
         string user;
+        static string k_or_n = "Artikli";
         public Prikazi_artikle(string grupa_pom, string user)
         {
             this.grupa = grupa_pom;
@@ -34,6 +35,7 @@ namespace Mobile_Town_V3
 
         private void Prikazi_artikle_Load(object sender, EventArgs e)
         {
+            k_or_n = "Artikli_knjizeno";
             Artikal art = new Artikal();
             List<Artikal> ls = art.get_artikli(grupa, "Artikli_knjizeno");
 
@@ -89,6 +91,7 @@ namespace Mobile_Town_V3
 
         private void button2_Click(object sender, EventArgs e)
         {
+            k_or_n = "Artikli";
             dataGridView1.Rows.Clear();
             dataGridView1.Refresh();
 
@@ -98,6 +101,22 @@ namespace Mobile_Town_V3
             foreach (Artikal a in ls)
             {
                 artikalBindingSource.Add(new Artikal() { sifra = a.sifra, artikal = a.artikal, kolicina = a.kolicina, prodajna_cena = a.prodajna_cena, knjizeno = a.knjizeno, nabavna_cena = a.nabavna_cena});
+            }
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            
+            dataGridView1.Rows.Clear();
+            dataGridView1.Refresh();
+            string search = textBox1.Text;
+
+            Artikal a = new Artikal();
+            List<Artikal> lista_artikala = a.Pretraga(search, grupa, k_or_n);
+
+            foreach(Artikal n in lista_artikala)
+            {
+                artikalBindingSource.Add(new Artikal() { sifra = n.sifra, artikal = n.artikal, kolicina = n.kolicina, prodajna_cena = n.prodajna_cena, knjizeno = n.knjizeno, nabavna_cena = n.nabavna_cena });
             }
         }
     }
