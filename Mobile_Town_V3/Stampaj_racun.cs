@@ -51,6 +51,11 @@ namespace Mobile_Town_V3
             label9.Text = prodavac;
             label10.Text = DateTime.Now.ToString("dd-MM-yy HH:mm");
 
+            Korisnici_ korisnici = new Korisnici_();
+            List<Korisnici_> ls_k = korisnici.daj_korisnika(prodavac);
+            textBox5.Text = ls_k[0].bonus.ToString();
+
+
             StringBuilder sb = new StringBuilder();
             for (int i = 0; i < sifre.Count; i++)
             {
@@ -68,13 +73,19 @@ namespace Mobile_Town_V3
         private void button1_Click(object sender, EventArgs e)
         {
             Artikal a = new Artikal();
-            decimal uplaceno = decimal.Parse(textBox1.Text);
+            Korisnici_ k = new Korisnici_();
+            decimal uplaceno = 0;
+            bool break_point = true;
+            if(!string.IsNullOrWhiteSpace(textBox1.Text))
+            {
+                uplaceno = decimal.Parse(textBox1.Text);
+            }
             decimal racun = decimal.Parse(label5.Text);
 
             decimal povracaj = uplaceno - racun;
             label8.Text = povracaj.ToString();
 
-            if(povracaj >= 0)
+            if(povracaj >= 0 || decimal.Parse(textBox6.Text) >= racun)
             {
                 StringBuilder sb = new StringBuilder();
                 StringBuilder sb_knjizeno = new StringBuilder();
@@ -111,10 +122,45 @@ namespace Mobile_Town_V3
                 r.prodavac = prodavac;
                 r.datum_izdavanja = DateTime.Now;
                 r.artikli = sb.ToString();
-                r.iznos = cena_sum;
+
+                decimal bonus = decimal.Parse(textBox5.Text); //trenutni bonus
+                decimal bonus_naplata;
+                if(!string.IsNullOrWhiteSpace(textBox6.Text))
+                {
+                    bonus_naplata = decimal.Parse(textBox6.Text); //uneseni bonus
+                    if(bonus_naplata > bonus)
+                    {
+                        MessageBox.Show("Prekoracili ste vas bonus!");
+                        break_point = false;
+                    }
+                    else
+                    {
+                        decimal bonus_oduzeti = bonus_naplata - cena_sum;  //bonus - iznos racuna
+
+                        List<Korisnici_> korisnicis = k.daj_korisnika(prodavac);
+                        if (bonus_oduzeti <= 0)
+                        {
+                            k.update_bonus(korisnicis[0].id_korisnika, 0);
+                            r.iznos = cena_sum - bonus_naplata;
+                        }
+                        else
+                        {
+                            bonus_oduzeti = bonus - cena_sum;
+                            k.update_bonus(korisnicis[0].id_korisnika, bonus_oduzeti);
+                            r.iznos = 0; Console.WriteLine(bonus_oduzeti);
+                        }
+                    }
+                    
+                    
+                }
+                else
+                {
+                    r.iznos = cena_sum;
+                }
+
                 r.iznos_nabavna = nabavna_sum;
 
-                if (r.unesi_racun())
+                if (r.unesi_racun() && break_point)
                 {
                     MessageBox.Show("Racun je zaveden!");
                     r.artikli = sb_knjizeno.ToString();

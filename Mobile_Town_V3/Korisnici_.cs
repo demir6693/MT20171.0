@@ -16,7 +16,7 @@ namespace Mobile_Town_V3
         public string korisnicko_ime { get; set; }
         public string sifra_korisnika { get; set; }
         public int nivo { get; set; }
-
+        public decimal bonus { get; set; }
         public bool Unesi_korisnika()
         {
             bool unos;
@@ -155,6 +155,55 @@ namespace Mobile_Town_V3
             }
 
             return ls;
+        }
+
+        public List<Korisnici_> daj_korisnika(string user)
+        {
+            List<Korisnici_> ls = new List<Korisnici_>();
+
+            using (SqlConnection conn = new SqlConnection(connString))
+            {
+                try
+                {
+                    conn.Open();
+
+                    SqlCommand cmd = new SqlCommand("SELECT * FROM Korisnici WHERE korisnicko_ime = @user_name", conn);
+                    cmd.Parameters.AddWithValue("@user_name", user);
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            Korisnici_ k = new Korisnici_();
+
+                            k.id_korisnika = int.Parse(reader["id_korisnika"].ToString());
+                            k.ime_korisnika = reader["ime"].ToString();
+                            k.prezime_korisnika = reader["prezime"].ToString();
+                            k.korisnicko_ime = reader["korisnicko_ime"].ToString();
+                            k.bonus = decimal.Parse(reader["bonus"].ToString());
+
+                            ls.Add(k);
+                        }
+                    }
+
+                }
+                catch (SqlException ex)
+                {
+                    Console.WriteLine(ex.Message);
+
+                }
+                finally
+                {
+                    conn.Close();
+                }
+            }
+
+            return ls;
+        }
+
+        public void update_bonus(int id, decimal bonus)
+        {
+
         }
     }
 }
