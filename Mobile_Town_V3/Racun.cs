@@ -913,5 +913,51 @@ namespace Mobile_Town_V3
 
             return ls_a;
         }
+
+        public List<Racun> pretraga_po_datumu(DateTime dt)
+        {
+            List<Racun> ls = new List<Racun>();
+
+            using (SqlConnection conn = new SqlConnection(connString))
+            {
+                try
+                {
+                    conn.Open();
+
+                    SqlCommand cmd = new SqlCommand("SELECT * FROM Racuni WHERE datum_izdavanja = @dt", conn);
+                    cmd.Parameters.AddWithValue("@dt", dt);
+
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            Racun r = new Racun();
+
+                            r.id_racuna = int.Parse(reader["id_racuna"].ToString());
+                            r.prodavac = reader["prodavac"].ToString();
+                            r.datum_izdavanja = DateTime.Parse(reader["datum_izdavanja"].ToString());
+                            r.artikli = reader["artikli"].ToString();
+                            r.iznos = decimal.Parse(reader["iznos"].ToString());
+                            r.iznos_nabavna = decimal.Parse(reader["iznos_nabavna"].ToString());
+
+                            ls.Add(r);
+                        }
+                    }
+
+                }
+                catch (SqlException ex)
+                {
+                    Console.WriteLine(ex.Message);
+
+                }
+                finally
+                {
+                    conn.Close();
+                }
+            }
+
+            return ls;
+        }
     }
 }

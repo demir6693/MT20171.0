@@ -22,6 +22,11 @@ namespace Mobile_Town_V3
             // TODO: This line of code loads data into the 'mobile_TownDataSet.Racuni' table. You can move, or remove it, as needed.
             this.racuniTableAdapter.Fill(this.mobile_TownDataSet.Racuni);
 
+
+            DateTime dt = DateTime.Now;
+            numericUpDown1.Value = dt.Day;
+            numericUpDown2.Value = dt.Month;
+            numericUpDown3.Value = dt.Year;
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
@@ -80,16 +85,35 @@ namespace Mobile_Town_V3
         {
             Racun r = new Racun();
 
-            try
+            if(!string.IsNullOrWhiteSpace(textBox1.Text))
             {
-                int id = int.Parse(textBox1.Text);
-                List<Racun> ls = r.daj_racun(id);
+                try
+                {   
+                    int id = int.Parse(textBox1.Text);
+                    List<Racun> ls = r.daj_racun(id);
 
-                dataGridView1.DataSource = ls;
+                    dataGridView1.DataSource = ls;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             }
-            catch(Exception ex)
+            else
             {
-                MessageBox.Show(ex.Message);
+                try
+                {
+                    int dan = int.Parse(numericUpDown1.Value.ToString());
+                    int mesec = int.Parse(numericUpDown2.Value.ToString());
+                    int godina = int.Parse(numericUpDown3.Value.ToString());
+                    DateTime dt = new DateTime(godina, mesec, dan);
+                    List<Racun> ls = r.pretraga_po_datumu(dt);
+                    dataGridView1.DataSource = ls;
+                }
+                catch(Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             }
             
         }
