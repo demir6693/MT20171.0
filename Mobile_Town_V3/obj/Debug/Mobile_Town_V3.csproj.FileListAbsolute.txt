@@ -60,7 +60,6 @@ C:\Users\demir\source\repos\Mobile_Town_V3\Mobile_Town_V3\Mobile_Town_V3\bin\Deb
 C:\Users\demir\source\repos\Mobile_Town_V3\Mobile_Town_V3\Mobile_Town_V3\bin\Debug\EntityFramework.xml
 C:\Users\demir\source\repos\Mobile_Town_V3\Mobile_Town_V3\Mobile_Town_V3\bin\Debug\EntityFramework.SqlServer.xml
 C:\Users\demir\source\repos\Mobile_Town_V3\Mobile_Town_V3\Mobile_Town_V3\bin\Debug\itextsharp.xml
-C:\Users\demir\source\repos\Mobile_Town_V3\Mobile_Town_V3\Mobile_Town_V3\obj\Debug\Mobile_Town_V3.csprojAssemblyReference.cache
 C:\Users\demir\source\repos\Mobile_Town_V3\Mobile_Town_V3\Mobile_Town_V3\obj\Debug\Mobile_Town_V3.csproj.ResolveComReference.cache
 C:\Users\demir\source\repos\Mobile_Town_V3\Mobile_Town_V3\Mobile_Town_V3\obj\Debug\Mobile_Town_V3.Dnevni_pazar.resources
 C:\Users\demir\source\repos\Mobile_Town_V3\Mobile_Town_V3\Mobile_Town_V3\obj\Debug\Mobile_Town_V3.Dodaj_korisnika.resources

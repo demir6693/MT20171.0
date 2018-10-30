@@ -115,17 +115,17 @@ namespace Mobile_Town_V3
                 else if(e.ColumnIndex == 8)
                 {
                     int sifra = int.Parse(dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString());
-                    int knjizeno = 0;
+                  
                     string query = null;
                     if (checkBox1.Checked)
                     {
                         query = "mob_hover_knjizeno";
-                        knjizeno = 1;
+                      
                     }
                     else
                     {
                         query = "mob_hover";
-                        knjizeno = 0;
+                       
                     }
 
                     if (a.brisi_artikal_mob_hover(sifra, query))

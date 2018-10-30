@@ -347,5 +347,29 @@ namespace Mobile_Town_V3
                 sum_row();
             }
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Korisnici_ k = new Korisnici_();
+            k.backup();
+            Artikal a = new Artikal();
+            a.backup();
+            a.backup_knjizeno();
+            a.backup_mob_hover();
+            a.backup_mob_hover_knjizeno();
+            Racun r = new Racun();
+            r.backup();
+            r.backup_knjizeno();
+            r.backup_hover_mob();
+            Servis_ s = new Servis_();
+            s.backup();
+            Rezervacija_ rez = new Rezervacija_();
+            rez.backup();
+            Narudzbine_ n = new Narudzbine_();
+            n.backup();
+            Dug d = new Dug();
+            d.backup();
+            MessageBox.Show("Baza podataka je sacuvana!");
+        }
     }
 }

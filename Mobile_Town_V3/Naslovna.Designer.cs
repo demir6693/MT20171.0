@@ -98,6 +98,7 @@
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
             this.panel6 = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -127,6 +128,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.DimGray;
+            this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.pictureBox7);
             this.panel1.Controls.Add(this.pictureBox1);
             this.panel1.Controls.Add(this.menuStrip1);
@@ -839,6 +841,18 @@
             this.panel6.Size = new System.Drawing.Size(1164, 10);
             this.panel6.TabIndex = 11;
             // 
+            // button1
+            // 
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Location = new System.Drawing.Point(964, 0);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(150, 29);
+            this.button1.TabIndex = 3;
+            this.button1.Text = "Kraj radnog dana";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // Naslovna
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -962,5 +976,6 @@
         private System.Windows.Forms.ToolStripMenuItem izlogujSeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem dodajKorisnikaToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem listaKorisnikaToolStripMenuItem;
+        private System.Windows.Forms.Button button1;
     }
 }

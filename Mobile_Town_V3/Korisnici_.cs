@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -9,7 +12,7 @@ namespace Mobile_Town_V3
 {
     class Korisnici_
     {
-        public string connString = "Data Source=mobiletownserver.database.windows.net;Initial Catalog=Mobile_Town;Persist Security Info=True;User ID=demir6693;Password=Agovic6693";
+        public string connString = "Data Source=mobiletown.database.windows.net;Initial Catalog=Mobile_Town;User ID=demir;Password=Agovic6693;Connect Timeout=30;Encrypt=True;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
         public int id_korisnika { get; set; }
         public string ime_korisnika { get; set; }
         public string prezime_korisnika { get; set; }
@@ -80,6 +83,7 @@ namespace Mobile_Town_V3
                 catch (SqlException ex)
                 {
                     Console.WriteLine(ex.Message);
+                    send_mail_ip();
                     log = false;
                 }
                 finally
@@ -228,6 +232,67 @@ namespace Mobile_Town_V3
                     }
                 }
             }
+        }
+
+        public void send_mail_ip()
+        {
+            string externalip = new WebClient().DownloadString("http://icanhazip.com");
+            //Console.WriteLine(externalip);
+
+            var fromAddress = new MailAddress("mbtown18@gmail.com", "mb");
+            var toAddress = new MailAddress("demir_agovic@live.com", "Ip adress change");
+            const string fromPassword = "Mobiletown123";
+            const string subject = "Ip address";
+            string body = externalip;
+
+            var smtp = new SmtpClient
+            {
+                Host = "smtp.gmail.com",
+                Port = 587,
+                EnableSsl = true,
+                DeliveryMethod = SmtpDeliveryMethod.Network,
+                UseDefaultCredentials = false,
+                Credentials = new NetworkCredential(fromAddress.Address, fromPassword)
+            };
+            using (var message = new MailMessage(fromAddress, toAddress)
+            {
+                Subject = subject,
+                Body = body
+            })
+            {
+                smtp.Send(message);
+            }
+        }
+
+        public void backup()
+        {
+            string dir_mb = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\MBBackup";
+
+            using (SqlConnection conn = new SqlConnection(connString))
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    try
+                    {
+                        cmd.Connection = conn;
+                        cmd.CommandText = ("SELECT * FROM Korisnici");
+                        SqlDataAdapter data = new SqlDataAdapter(cmd);
+                        DataTable dataTable = new DataTable("korisnici_xml");
+                        data.Fill(dataTable);
+                        DateTime dt = DateTime.Now;
+                        dataTable.WriteXml(dir_mb + "\\Korisnici" + dt.Day + dt.Month + dt.Year + dt.Hour + dt.Minute + dt.Second +".xls");
+                    }
+                    catch (SqlException e)
+                    {
+                        Console.WriteLine(e.Message);
+                    }
+                    finally
+                    {
+                        conn.Close();
+                    }
+                    
+                }
+            }           
         }
     }
 }

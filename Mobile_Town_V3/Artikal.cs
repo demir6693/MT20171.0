@@ -10,7 +10,7 @@ namespace Mobile_Town_V3
 {
     class Artikal
     {
-        public string connString = "Data Source=mobiletownserver.database.windows.net;Initial Catalog=Mobile_Town;Persist Security Info=True;User ID=demir6693;Password=Agovic6693";
+        public string connString = "Data Source=mobiletown.database.windows.net;Initial Catalog=Mobile_Town;User ID=demir;Password=Agovic6693;Connect Timeout=30;Encrypt=True;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
         public int sifra { get; set; }
         public string grupa { get; set; }
         public string artikal { get; set; }
@@ -641,6 +641,128 @@ namespace Mobile_Town_V3
             return del;
         }
 
+        public void backup()
+        {
+            string dir_mb = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\MBBackup";
 
+            using (SqlConnection conn = new SqlConnection(connString))
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    try
+                    {
+                        cmd.Connection = conn;
+                        cmd.CommandText = ("SELECT * FROM Artikli");
+                        SqlDataAdapter data = new SqlDataAdapter(cmd);
+                        DataTable dataTable = new DataTable("artikli_xml");
+                        data.Fill(dataTable);
+                        DateTime dt = DateTime.Now;
+                        dataTable.WriteXml(dir_mb + "\\Artikli" + dt.Day + dt.Month + dt.Year + dt.Hour + dt.Minute + dt.Second + ".xls");
+                    }
+                    catch (SqlException e)
+                    {
+                        Console.WriteLine(e.Message);
+                    }
+                    finally
+                    {
+                        conn.Close();
+                    }
+
+                }
+            }
+        }
+
+        public void backup_knjizeno()
+        {
+            string dir_mb = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\MBBackup";
+
+            using (SqlConnection conn = new SqlConnection(connString))
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    try
+                    {
+                        cmd.Connection = conn;
+                        cmd.CommandText = ("SELECT * FROM Artikli_knjizeno");
+                        SqlDataAdapter data = new SqlDataAdapter(cmd);
+                        DataTable dataTable = new DataTable("artikli_xml");
+                        data.Fill(dataTable);
+                        DateTime dt = DateTime.Now;
+                        dataTable.WriteXml(dir_mb + "\\Artikliknjizeno" + dt.Day + dt.Month + dt.Year + dt.Hour + dt.Minute + dt.Second + ".xls");
+                    }
+                    catch (SqlException e)
+                    {
+                        Console.WriteLine(e.Message);
+                    }
+                    finally
+                    {
+                        conn.Close();
+                    }
+
+                }
+            }
+        }
+
+        public void backup_mob_hover()
+        {
+            string dir_mb = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\MBBackup";
+
+            using (SqlConnection conn = new SqlConnection(connString))
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    try
+                    {
+                        cmd.Connection = conn;
+                        cmd.CommandText = ("SELECT * FROM mob_hover");
+                        SqlDataAdapter data = new SqlDataAdapter(cmd);
+                        DataTable dataTable = new DataTable("mobhover_xml");
+                        data.Fill(dataTable);
+                        DateTime dt = DateTime.Now;
+                        dataTable.WriteXml(dir_mb + "\\MobHover" + dt.Day + dt.Month + dt.Year + dt.Hour + dt.Minute + dt.Second + ".xls");
+                    }
+                    catch (SqlException e)
+                    {
+                        Console.WriteLine(e.Message);
+                    }
+                    finally
+                    {
+                        conn.Close();
+                    }
+
+                }
+            }
+        }
+
+        public void backup_mob_hover_knjizeno()
+        {
+            string dir_mb = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\MBBackup";
+
+            using (SqlConnection conn = new SqlConnection(connString))
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    try
+                    {
+                        cmd.Connection = conn;
+                        cmd.CommandText = ("SELECT * FROM mob_hover_knjizeno");
+                        SqlDataAdapter data = new SqlDataAdapter(cmd);
+                        DataTable dataTable = new DataTable("mobhoverknjizeno_xml");
+                        data.Fill(dataTable);
+                        DateTime dt = DateTime.Now;
+                        dataTable.WriteXml(dir_mb + "\\MobHoverKnjizeno" + dt.Day + dt.Month + dt.Year + dt.Hour + dt.Minute + dt.Second + ".xls");
+                    }
+                    catch (SqlException e)
+                    {
+                        Console.WriteLine(e.Message);
+                    }
+                    finally
+                    {
+                        conn.Close();
+                    }
+
+                }
+            }
+        }
     }
 }

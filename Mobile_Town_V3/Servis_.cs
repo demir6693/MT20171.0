@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -9,7 +10,7 @@ namespace Mobile_Town_V3
 {
     class Servis_
     {
-        public string connString = "Data Source=mobiletownserver.database.windows.net;Initial Catalog=Mobile_Town;Persist Security Info=True;User ID=demir6693;Password=Agovic6693";
+        public string connString = "Data Source=mobiletown.database.windows.net;Initial Catalog=Mobile_Town;User ID=demir;Password=Agovic6693;Connect Timeout=30;Encrypt=True;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
         public int id_servisa { get; set; }
         public string serviser { get; set; }
         public DateTime DateTime { get; set; }
@@ -165,6 +166,37 @@ namespace Mobile_Town_V3
             }
 
             return edit;
+        }
+
+        public void backup()
+        {
+            string dir_mb = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\MBBackup";
+
+            using (SqlConnection conn = new SqlConnection(connString))
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    try
+                    {
+                        cmd.Connection = conn;
+                        cmd.CommandText = ("SELECT * FROM Servis");
+                        SqlDataAdapter data = new SqlDataAdapter(cmd);
+                        DataTable dataTable = new DataTable("servis_xml");
+                        data.Fill(dataTable);
+                        DateTime dt = DateTime.Now;
+                        dataTable.WriteXml(dir_mb + "\\Servis" + dt.Day + dt.Month + dt.Year + dt.Hour + dt.Minute + dt.Second + ".xls");
+                    }
+                    catch (SqlException e)
+                    {
+                        Console.WriteLine(e.Message);
+                    }
+                    finally
+                    {
+                        conn.Close();
+                    }
+
+                }
+            }
         }
 
     }

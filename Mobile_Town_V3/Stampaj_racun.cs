@@ -146,7 +146,7 @@ namespace Mobile_Town_V3
                         decimal bonus_oduzeti = bonus_naplata - cena_sum;  //bonus - iznos racuna
 
                         List<Korisnici_> korisnicis = k.daj_korisnika(prodavac);
-                        if (bonus_oduzeti <= 0)
+                        if (bonus_oduzeti < 0)
                         {
                             k.update_bonus(korisnicis[0].id_korisnika, 0);
                             r.iznos = cena_sum - bonus_naplata;
