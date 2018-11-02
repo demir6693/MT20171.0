@@ -143,14 +143,15 @@ namespace Mobile_Town_V3
                     }
                     else
                     {
-                        decimal bonus_oduzeti = bonus_naplata - cena_sum;  //bonus - iznos racuna
+                        decimal bonus_oduzeti = bonus_naplata - cena_sum;  //bonus_uneti - iznos racuna
 
                         List<Korisnici_> korisnicis = k.daj_korisnika(prodavac);
                         if (bonus_oduzeti < 0)
                         {
-                            k.update_bonus(korisnicis[0].id_korisnika, 0);
+                            decimal bonus_za_bazu = bonus - bonus_naplata;
+                            k.update_bonus(korisnicis[0].id_korisnika, bonus_za_bazu);
                             r.iznos = cena_sum - bonus_naplata;
-                            sb.Append("Bonus: " + bonus);
+                            
                         }
                         else
                         {
@@ -158,14 +159,7 @@ namespace Mobile_Town_V3
                             bonus_oduzeti = bonus - cena_sum;
                             k.update_bonus(korisnicis[0].id_korisnika, bonus_oduzeti);
                             r.iznos = 0;
-                            if (uneti_bonus > cena_sum)
-                            {
-                                sb.Append("Bonus: " + cena_sum);
-                            }
-                            else
-                            {
-                                sb.Append("Bonus: " + uneti_bonus);
-                            }
+                          
                         }
 
                         r.artikli = sb.ToString();
